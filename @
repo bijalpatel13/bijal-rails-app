@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home | Bijal's App with Ruby on Rails</title>
+  </head>
+  <body>
+    <p>
+    This is the home page for my app. One of my favorite fictional character is
+    <a href="http://gameofthrones.wikia.com/wiki/Daenerys_Targaryen">Daenerys Targaryen.</a>
+    Do watch my latest performance that was caught on video
+    <a href="http://www.youtube.com/watch?v=ZYKlSJwPpgg">here.</a>
+    </p>
+  </body>
+</html>
