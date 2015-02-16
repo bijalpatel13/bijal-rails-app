@@ -13,7 +13,7 @@ RSpec.describe StaticPagesController, :type => :controller do
   it "should get home" do
     get :home
     expect(response).to have_http_status(200)
-    expect(response.body).to have_tag('title', :text =>"Home | #{@base_title}")
+    expect(response.body).to have_tag('title', :text =>"#{@base_title}")
   end
 
   it "should get help" do
