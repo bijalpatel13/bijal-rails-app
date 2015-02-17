@@ -1,0 +1,15 @@
+require 'rails_helper'
+require 'spec_helper'
+
+RSpec.describe SiteLayoutTest, :type => :integration do
+  
+  render_views
+  before :each do
+    @base_title = "Bijal's App with Ruby on Rails"
+  end
+  
+  it "should have the right layout links" do
+    visit root_path
+      expect(response.body).to have_tag('title', :text => "#{@base_title}")
+  end
+end

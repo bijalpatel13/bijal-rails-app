@@ -1,7 +1,21 @@
-<h1>My App</h1>
-<p>
-  This is the home page for my app. One of my favorite fictional character is
-  <a href="http://gameofthrones.wikia.com/wiki/Daenerys_Targaryen">Daenerys Targaryen.</a>
-  Do watch my latest performance that was caught on video
-  <a href="http://www.youtube.com/watch?v=ZYKlSJwPpgg">here.</a>
-</p>
+<div class="center jumbotron">
+  <h1>Welcome to my App</h1>
+  <h2>
+    This is the home page for my app.
+  </h2>
+  <h3>
+    Random facts about me:
+  </h3>
+  <p>
+    1. One of my favorite fictional character is
+    <a href="http://gameofthrones.wikia.com/wiki/Daenerys_Targaryen">Daenerys Targaryen.</a>
+  </p>
+  <p>
+    2. My latest performance that was caught on video is
+    <a href="http://www.youtube.com/watch?v=ZYKlSJwPpgg">here.</a>
+  </p>
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+</div>
+
+<%= link_to image_tag("rails.png", alt: "Rails logo"),
+  'http://rubyonrails.org/' %>
