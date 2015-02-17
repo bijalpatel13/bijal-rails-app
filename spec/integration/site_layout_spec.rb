@@ -9,5 +9,6 @@ RSpec.describe "SiteLayoutTest" do
     expect(response.body).to have_tag('li', href: "#{help_path}")
     expect(response.body).to have_tag('li', href: "#{about_path}")
     expect(response.body).to have_tag('li', href: "#{contact_path}")
+    expect(response.body).to have_tag('li', href: "#{signup_path}")
   end
 end
