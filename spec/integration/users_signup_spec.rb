@@ -25,5 +25,6 @@ RSpec.describe "UsersSignupTest" do
                              password: "password",
                              password_confirmation: "password" }
     expect(User.count).to eq(@count+1) 
+    assert is_logged_in?
   end
 end
