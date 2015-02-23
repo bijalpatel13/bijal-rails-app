@@ -34,10 +34,10 @@ RSpec.describe "UsersSignupTest" do
     assert !is_logged_in?
     get edit_account_activation_path("invalid token")
     assert !is_logged_in?
-    get edit_account_activation_path(@user.activation_token, email: 'wrong')
+    get edit_account_activation_path(user.activation_token, email: 'wrong')
     assert !is_logged_in?
-    get edit_account_activation_path(@user.activation_token, email: @user.email)
-    assert @user.reload.activated?
+    get edit_account_activation_path(user.activation_token, email: @user.email)
+    assert user.reload.activated?
     follow_redirect!
     expect(response).to render_template('users/show')
     assert is_logged_in?    

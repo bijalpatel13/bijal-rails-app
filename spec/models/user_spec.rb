@@ -68,4 +68,8 @@ RSpec.describe User, :type => :model do
     expect(@user).not_to be_valid
   end
 
+  it "authenticated? will return false for a user with nil digest" do
+    assert !@user.authenticated?(:remember, '')
+  end
+
 end
