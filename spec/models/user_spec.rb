@@ -4,8 +4,7 @@ require 'spec_helper'
 RSpec.describe User, :type => :model do
 
   before :each do
-    @user = User.new(name: "Test User", email: "user@test.com",
-                     password: "password", password_confirmation: "password")
+    @user = FactoryGirl.create :bijal
   end
 
   it "should be valid" do

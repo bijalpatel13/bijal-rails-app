@@ -4,9 +4,7 @@ require 'spec_helper'
 RSpec.describe "UsersLoginTest" do
 
   before :each do
-    #@user = FactoryGirl.build(:user)
-    @user = User.create(name: "Bijal Patel", email: "bijalpatel@hotmail.com",
-                     password: "password", password_confirmation: "password")
+    @user = FactoryGirl.create :bijal
   end
 
   it "will fail login with invalid information" do
@@ -21,11 +19,11 @@ RSpec.describe "UsersLoginTest" do
 
   it "login with valid information" do
     get login_path
-    post login_path, session: { email: "#{@user.email}", password: "#{@user.password}" }
+    post login_path, session: { email: @user.email, password: "password" }
+    #binding.pry
     assert is_logged_in?
     assert_redirected_to user_path(@user)
     follow_redirect!
-    #binding.pry
     expect(response.body).not_to have_tag('li', text: "#{login_path}")
     expect(response.body).to have_tag('li', href: "#{logout_path}")
     expect(response.body).to have_tag('li', href: "#{user_path(@user)}")
@@ -39,7 +37,7 @@ RSpec.describe "UsersLoginTest" do
 
   it "login with remembering" do
     get login_path
-    post login_path, session: { email: "#{@user.email}", password: "#{@user.password}",
+    post login_path, session: { email: @user.email, password: "password",
     remember_me: '1'}
     assert !cookies['remember_token'].nil?
   end
@@ -47,7 +45,7 @@ RSpec.describe "UsersLoginTest" do
   it "login without remembering" do
     assert_nil cookies['remember_token']
     get login_path
-    post login_path, session: { email: "#{@user.email}", password: "#{@user.password}",
+    post login_path, session: { email: @user.email, password: "password",
     remember_me: '0'}
   end
 

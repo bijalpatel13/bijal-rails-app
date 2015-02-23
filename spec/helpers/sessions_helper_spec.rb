@@ -13,8 +13,7 @@ require 'rails_helper'
 RSpec.describe SessionsHelper, :type => :helper do
 
   before :each do
-    @user = User.create(name: "Bijal Patel", email: "bijalpatel@hotmail.com",
-                        password: "password", password_confirmation: "password")
+    @user = FactoryGirl.create :bijal 
     remember(@user)
   end
 
