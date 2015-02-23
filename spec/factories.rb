@@ -5,6 +5,7 @@ FactoryGirl.define do
       name "Bijal Patel"
       email "bijalpatel@hotmail.com"
       password_digest { User.digest('password') }
+      admin true
     end
 
     factory :example do

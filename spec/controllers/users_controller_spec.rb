@@ -6,6 +6,7 @@ RSpec.describe UsersController, :type => :controller do
   before :each do
     @user = FactoryGirl.create :bijal
     @other_user = FactoryGirl.create :example 
+    @count = 0
   end
 
   it "should redirect index when not logged in" do
@@ -43,6 +44,21 @@ RSpec.describe UsersController, :type => :controller do
     session[:user_id] = @other_user.id
     patch :update, id: @user, user: {name: @user.name, email: @user.email}
     expect(flash).not_to be_present
+    assert_redirected_to root_url
+  end
+
+  it "will redirect destroy when not logged in" do
+    @count = User.count
+    delete :destroy, id: @user
+    expect(User.count).to eq(@count)
+    assert_redirected_to login_url
+  end
+
+  it "should redirect destory when logged in as a non-admin" do
+    session[:user_id] = @other_user.id
+    @count = User.count
+    delete :destroy, id: @user
+    expect(User.count).to eq(@count)
     assert_redirected_to root_url
   end
 
