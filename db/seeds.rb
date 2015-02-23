@@ -4,7 +4,7 @@ User.create!(name:  "Bijal Patel",
              password_confirmation: "password",
              admin: true)
 
-User.create!(name:  "Matthew Hopkins"
+User.create!(name:  "Matthew Hopkins",
              email: "moebaca@hotmail.com",
              password:              "Password1",
              password_confirmation: "Password1",
