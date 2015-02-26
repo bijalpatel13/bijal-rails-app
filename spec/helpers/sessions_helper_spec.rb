@@ -13,7 +13,7 @@ require 'rails_helper'
 RSpec.describe SessionsHelper, :type => :helper do
 
   before :each do
-    @user = FactoryGirl.create :bijal 
+    @user = User.find_by(email: "bijalpatel@hotmail.com")
     remember(@user)
   end
 

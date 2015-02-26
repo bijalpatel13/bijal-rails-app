@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe UserMailer, :type => :mailer do
   describe "account_activation" do
     before :each do
-      @user = FactoryGirl.create :bijal
+      @user = User.find_by(email: "bijalpatel@hotmail.com")
       @user.activation_token = User.new_token
     end
 
@@ -24,7 +24,7 @@ RSpec.describe UserMailer, :type => :mailer do
 
   describe "password_reset" do
     before :each do
-      @user = FactoryGirl.create :bijal
+      @user = User.find_by(email: "bijalpatel@hotmail.com")
       @user.reset_token = User.new_token
     end
 

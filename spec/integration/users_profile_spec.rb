@@ -4,14 +4,14 @@ RSpec.describe "UsersProfileTest" do
   include ApplicationHelper
 
   before :each do
-    @user = FactoryGirl.create :bijal
-    FactoryGirl.create :orange, user: @user
-    FactoryGirl.create :tau_manifesto, user: @user
-    FactoryGirl.create :cat_video, user: @user
-    FactoryGirl.create :most_recent, user: @user
+    @user = User.find_by(email: "bijalpatel@hotmail.com")
+    FactoryGirl.create :orange
+    FactoryGirl.create :tau_manifesto
+    FactoryGirl.create :cat_video
+    FactoryGirl.create :most_recent
     (1..30).each do |i|
       micropost = "micropost_#{i}"
-      FactoryGirl.create micropost.to_sym, user: @user
+      FactoryGirl.create micropost.to_sym
     end
   end
 

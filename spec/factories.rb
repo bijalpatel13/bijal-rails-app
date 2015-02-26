@@ -10,6 +10,14 @@ FactoryGirl.define do
       activated_at { Time.zone.now }
     end
 
+    factory :archer do
+      name "Archer"
+      email "archer@railstutorial.org"
+      password_digest { User.digest('password') }
+      activated true
+      activated_at { Time.zone.now }
+    end
+
     factory :example do
       name "Example User"
       email "example@railstutorial.org"
@@ -39,31 +47,35 @@ FactoryGirl.define do
     
   end
 
+  bijal =     FactoryGirl.create :bijal
+  example =   FactoryGirl.create :example
+  archer =    FactoryGirl.create :archer
+  test_user = FactoryGirl.create :test_user
+
   factory :micropost do
-    test = User.find_by(email: "bijalpatel@hotmail.com")
 
     factory :orange do
       content "I just ate an orange!"
       created_at { 10.minutes.ago }
-      user test
+      user bijal 
     end
 
     factory :tau_manifesto do
       content "Check out the @tauday site"
       created_at { 3.years.ago }
-      user test
+      user bijal
     end
 
     factory :cat_video do
       content "Poptart cat: http://youtu.be/QH2-TGUlwu4"
       created_at { 2.hours.ago}
-      user test
+      user bijal
     end
 
     factory :most_recent do
       content "This is a test micropost"
       created_at { Time.zone.now }
-      user test
+      user bijal
     end
 
     (1..30).each do |i|
@@ -71,9 +83,34 @@ FactoryGirl.define do
       factory micropost.to_sym do
         content { Faker::Lorem.sentence(5) }
         created_at { 42.days.ago }
-        user test
+        user bijal
       end
     end
 
   end
+
+  factory :relationship do
+    
+    factory :one do
+      follower bijal
+      followed example
+    end
+
+    factory :two do
+      follower bijal
+      followed test_user
+    end
+
+    factory :three do
+      follower example
+      followed bijal
+    end
+    
+    factory :four do
+      follower archer
+      followed bijal
+    end
+
+  end
+    
 end

@@ -4,7 +4,9 @@ require 'spec_helper'
 RSpec.describe User, :type => :model do
 
   before :each do
-    @user = FactoryGirl.create :bijal
+    @user = User.find_by(email: "bijalpatel@hotmail.com")
+    @example = User.find_by(email: "example@railstutorial.org") 
+    @archer = User.find_by(email: "archer@railstutorial.org") 
   end
 
   it "should be valid" do
@@ -78,6 +80,30 @@ RSpec.describe User, :type => :model do
     @count = Micropost.count
     @user.destroy
     expect(Micropost.count).to eq(@count-1)
+  end
+  
+  it "should follow and unfollow a user" do
+    assert !@user.following?(@example)
+    @user.follow(@example)
+    assert @user.following?(@example)
+    assert @example.followers.include?(@user)
+    @user.unfollow(@example)
+    assert !@user.following?(@example)
+  end
+
+  it "feed should have the right posts" do
+    # Posts from followed user
+    @example.microposts.each do |post_following|
+      assert @bijal.feed.include?(post_following)
+    end
+    # Posts from self
+    @example.microposts.each do |post_self|
+      assert @example.feed.include?(post_self)
+    end
+    # Posts from unfollowed user
+    @archer.microposts.each do |post_unfollowed|
+      assert !@bijal.feed.include?(post_unfollowed)
+    end
   end
 
 end

@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "UsersIndexTest" do
 
   before :each do
-    @admin = FactoryGirl.create :bijal
-    @non_admin = FactoryGirl.create :example
+    @admin = User.find_by(email: "bijalpatel@hotmail.com")
+    @non_admin = User.find_by(email: "example@railstutorial.org")
     (1..40).each do |i|
       username = "user_#{i}"
       FactoryGirl.create username.to_sym

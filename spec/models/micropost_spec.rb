@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Micropost, :type => :model do
   before :each do
-    @user = FactoryGirl.create :bijal
+    @user = User.find_by(email: "bijalpatel@hotmail.com")
     @micropost = @user.microposts.build(content: "Lorem ipsum")
   end
 
@@ -26,10 +26,10 @@ RSpec.describe Micropost, :type => :model do
   end
 
   it "order should be most recent first" do
-    FactoryGirl.create :orange, user: @user
-    FactoryGirl.create :tau_manifesto, user: @user
-    FactoryGirl.create :cat_video, user: @user
-    microposts = FactoryGirl.create :most_recent, user: @user
+    FactoryGirl.create :orange
+    FactoryGirl.create :tau_manifesto
+    FactoryGirl.create :cat_video
+    microposts = FactoryGirl.create :most_recent
     expect(microposts).to eq(Micropost.first)
   end
 end

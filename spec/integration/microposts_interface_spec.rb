@@ -3,14 +3,14 @@ require 'rails_helper'
 RSpec.describe "MicropostsInterfaceTest" do
 
   before :each do
-    @user = FactoryGirl.create :bijal
-    FactoryGirl.create :orange, user: @user
-    FactoryGirl.create :tau_manifesto, user: @user
+    @user = User.find_by(email: "bijalpatel@hotmail.com")
+    FactoryGirl.create :orange
+    FactoryGirl.create :tau_manifesto
     FactoryGirl.create :cat_video, user: @user
-    FactoryGirl.create :most_recent, user: @user
+    FactoryGirl.create :most_recent
     (1..30).each do |i|
       micropost = "micropost_#{i}"
-      FactoryGirl.create micropost.to_sym, user: @user
+      FactoryGirl.create micropost.to_sym
     end
   end
 
@@ -38,7 +38,7 @@ RSpec.describe "MicropostsInterfaceTest" do
     count = Micropost.count
     delete micropost_path(first_micropost)
     expect(Micropost.count).to eq(count-1)
-    get user_path(FactoryGirl.create :example)
+    get user_path(User.find_by(email: "example@railstutorial.org"))
     expect(response.body).not_to have_tag('a', text: 'delete')
   end
 end

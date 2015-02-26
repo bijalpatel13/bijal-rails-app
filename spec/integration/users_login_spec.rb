@@ -4,7 +4,7 @@ require 'spec_helper'
 RSpec.describe "UsersLoginTest" do
 
   before :each do
-    @user = FactoryGirl.create :bijal
+    @user = User.find_by(email: "bijalpatel@hotmail.com")
   end
 
   it "will fail login with invalid information" do
@@ -20,7 +20,6 @@ RSpec.describe "UsersLoginTest" do
   it "login with valid information" do
     get login_path
     post login_path, session: { email: @user.email, password: "password" }
-    #binding.pry
     assert is_logged_in?
     assert_redirected_to user_path(@user)
     follow_redirect!

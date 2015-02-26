@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "PasswordResetsTest" do
   before :each do
     ActionMailer::Base.deliveries.clear
-    @user = FactoryGirl.create :bijal
+    @user = User.find_by(email: "bijalpatel@hotmail.com")
   end
 
   it "reset password" do

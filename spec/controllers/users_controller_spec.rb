@@ -4,8 +4,8 @@ require 'spec_helper'
 RSpec.describe UsersController, :type => :controller do
 
   before :each do
-    @user = FactoryGirl.create :bijal
-    @other_user = FactoryGirl.create :example 
+    @user = User.find_by(email: "bijalpatel@hotmail.com")
+    @other_user = User.find_by(email: "example@railstutorial.org")
     @count = 0
   end
 
@@ -60,6 +60,16 @@ RSpec.describe UsersController, :type => :controller do
     delete :destroy, id: @user
     expect(User.count).to eq(@count)
     assert_redirected_to root_url
+  end
+
+  it "will redirect following when not logged in" do
+    get :following, id: @user
+    assert_redirected_to login_url
+  end
+  
+  it "will redirect followers when not logged in" do
+    get :followers, id: @user
+    assert_redirected_to login_url
   end
 
 end

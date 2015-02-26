@@ -4,7 +4,7 @@ require 'spec_helper'
 RSpec.describe "UsersLoginTest" do
 
   before :each do
-    @user = FactoryGirl.create :bijal
+    @user = User.find_by(email: "bijalpatel@hotmail.com")
   end
 
   it "unsuccessful edit" do
@@ -14,7 +14,7 @@ RSpec.describe "UsersLoginTest" do
                                     email: "bijalpatel@hotmail.com",
                                     password: "foo",
                                     password_confirmation: "bar" }
-    expect(responst.to render_template('users/edit')
+    expect(response).to render_template('users/edit')
   end
 
   it "successful edit" do
